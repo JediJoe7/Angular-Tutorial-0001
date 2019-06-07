@@ -19,7 +19,7 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
-  fireEvent(){
+  fireEvent() {
     this.childEvent.emit('Hey Codevolution');
   }
 
