@@ -7,6 +7,10 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
     <h3>You selected department with id = {{departmentID}}</h3>
     <a (click)="goPrevious()">Previous</a>&nbsp;&nbsp;
     <a (click)="goNext()">Next</a>
+
+    <div>
+    <button (click)="gotoDepartments()">Back</button>
+    </div>
   `,
   styles: []
 })
@@ -18,23 +22,30 @@ export class DepartmentDetailComponent implements OnInit {
 
   ngOnInit() {
 // tslint:disable-next-line: radix
-    //let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    //this.departmentID = id;
+    // let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    // this.departmentID = id;
     this.route.paramMap.subscribe((params: ParamMap) => {
-// tslint:disable-next-line: radix
+// tslint:disable-next-line: prefer-const
       let id = parseInt(params.get('id'));
       this.departmentID = id;
      });
   }
 
-  goPrevious(){
+  goPrevious() {
+// tslint:disable-next-line: prefer-const
     let previousId = this.departmentID - 1;
     this.router.navigate(['/departments', previousId]);
   }
 
-  goNext(){
+  goNext() {
+// tslint:disable-next-line: prefer-const
     let nextId = this.departmentID + 1;
     this.router.navigate(['/departments', nextId]);
   }
 
+  // Optional route parameters do not affect the view but can be used to apply logic to te view.
+  gotoDepartments() {
+    let selectedId = this.departmentID ? this.departmentID : null;
+    this.router.navigate(['/departments', {id: selectedId, test: 'unusedTestValue'}])
+  }
 }
