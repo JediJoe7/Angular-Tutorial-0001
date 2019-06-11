@@ -46,6 +46,8 @@ export class DepartmentDetailComponent implements OnInit {
   // Optional route parameters do not affect the view but can be used to apply logic to te view.
   gotoDepartments() {
     let selectedId = this.departmentID ? this.departmentID : null;
-    this.router.navigate(['/departments', {id: selectedId, test: 'unusedTestValue'}])
+  //  this.router.navigate(['/departments', {id: selectedId, test: 'unusedTestValue'}])
+  // relative navigation example =>
+    this.router.navigate(['../', {id: selectedId, test: 'unsedTestValue'}], {relativeTo: this.route})
   }
 }
